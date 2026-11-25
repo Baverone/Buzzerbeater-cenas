@@ -1,205 +1,286 @@
 # Planeador de Rotações Nightmare (PokeXGames) — Desenho
 
-Data: 2026-11-25 · Estado: rascunho para aprovação
+Data: 2026-11-25 · Estado: rascunho v2 para aprovação
 
 ## 1. Intenção e porquê
 
 Quem vai usar isto joga PokeXGames (PXG) com vários bonecos, todos com
 **Nightmare Disk 4.0**. O objetivo é caçar nas hunts da Nightmare World "100%
-eficiente": nunca ficar parado à espera de cooldowns entre lures, sabendo em
-cada momento que Pokémon soltar, que golpes usar e quantos segundos falta para o
-kit estar pronto.
+eficiente": nunca ficar parado à espera de cooldowns entre lures. A **página
+escolhe a rotação**: que Pokémon soltar em cada lure, que skills usar ou
+guardar, onde entram o Elixir de Ataque e o Revive, e em que segundo soltar cada
+Pokémon.
 
-Mecânica central (confirmada por quem joga e pela wiki):
+### 1.1 Mecânica do Disk (confirmada por quem joga e pela wiki)
 
 - O Disk só atua **com o Pokémon dentro da Pokébola**. Fora da bola o cooldown
   desce ao ritmo normal (1 s por segundo).
 - Dentro da bola, além do ritmo normal, recupera **1 s extra a cada N s**:
   Disk 1.0 → N=8, 2.0 → N=6, 3.0 → N=4, **4.0 → N=3**.
 - Os helds usados são **X-Attack e X-Critical**, nunca X-Cooldown. Os cooldowns
-  base são os da wiki, sem redução.
+  base são os da wiki.
 
-A forma de tirar partido disto é uma rotação de trocas: enquanto um Pokémon
-ataca uma lure, os outros recuperam na bola com o Disk.
+### 1.2 Como se caça a sério (vídeos do Mass Roon, Orebound)
 
-Prioridade de clãs: **Orebound → Malefic → Volcanic**. O boneco principal é
-Orebound (Rebound); os outros dois clãs são de outros bonecos.
+Tirado das legendas de três vídeos: "Nightmare Disk 4 e Hunt Pyroar",
+"432 mobs/hora – Disk 3" e "Como montar o seu time de Ultra Lab".
+
+- **Uma lure é um combo de 2–3 Pokémon**, não um só.
+  - Um Pokémon **lura**: off-tank ou T1H, que puxa os bichos e começa o dano.
+  - Os outros **completam o dano**: um burst e um finalizador, normalmente o que
+    tem device.
+- A rotação é um **ciclo fixo de ~6 lures** que se repete para sempre.
+- **Elixir de Ataque** e **Revive** são peças da rotação.
+  - O elixir substitui um Pokémon que ainda não voltou do cooldown: a lure do
+    elixir tem só dois Pokémon.
+  - O revive repõe o kit do Pokémon que lura, que assim combo duas vezes na
+    mesma lure. Entra na 6.ª lure.
+- **Ciclar a skill de 50 s**: os T1H têm duas skills de 50 s (Nightmare Move e
+  outra). Usa-se uma numa lure e guarda-se a outra para a seguinte.
+  - Com Disk 3, todos os Pokémon da rotação ciclam a sua skill de 50 s. Por isso
+    convém Pokémon com **uma só** skill de 50 s.
+  - A skill mais forte do T1H fica guardada para a lure do elixir, porque essa só
+    tem dois Pokémon.
+- **Soltar antes do cooldown acabar**: o Mass Roon solta o off-tank quando a
+  skill mais alta marca **10 s**, e o Donphan ou o Pupitar quando marca **15 s**.
+  O resto do cooldown acaba enquanto combo os primeiros golpes.
+- Regras dele:
+  - "Dano a sobrar é potencial perdido": a lure deve fechar à justa.
+  - Mais Pokémon por lure quer dizer mais tempo de cada um na bola, logo mais
+    proveito do Disk.
+- Exemplo: Pyroar com Disk 4, ~436 mobs/h, ~4 min por ciclo.
+  - Equipa: Shiny Golem e Shiny Rampardos (luram alternados), Shiny Hariyama e
+    Shiny Rhydon TM (burst que muda de time), Shiny Pupitar (T1B), Shiny Donphan
+    (device Critical 8, fecha).
+  - Ciclo:
+    1. Golem + Hariyama + Donphan
+    2. Rampardos + Rhydon TM + Pupitar (guarda a M8)
+    3. Golem + M8 do Pupitar + Donphan com elixir
+    4. Rampardos + Hariyama + Pupitar + uma skill do Donphan
+    5. Golem + Rhydon TM + Donphan
+    6. Rampardos → Revive → Rampardos + Pupitar
 
 ## 2. Objetivos
 
-1. Uma página (planeador) onde se escolhe **clã → hunt → equipa** e se obtém a
-   rotação: ordem de soltar, golpes por ordem em cada lure, espera (s) antes de
-   soltar e momento em que cada Pokémon fica pronto. Também diz se a equipa chega
-   para zero espera e, se não chegar, quanto se espera por ciclo.
-2. Um **modo hunt** (cronómetro ao vivo) para usar durante o jogo. Toca-se ao
-   soltar e ao recolher cada Pokémon e a página conta, com a matemática do Disk,
-   quanto falta para cada um estar pronto, indicando o próximo a soltar.
-3. Para cada hunt, um **painel de informação** tirado da wiki: elemento do dano
-   dos bichos, elementos super efetivos e efetivos contra eles, berries
-   recomendadas, boss/angry/shiny do local, resistência e caminho, e link para a
-   página da wiki.
-4. Cobrir as hunts indicadas para Orebound (27), Malefic (6) e Volcanic (20)
-   segundo a wiki, mais a **Ultra Lab** como entrada especial.
-5. Equipas guardadas **por boneco**, para não ter de as escolher de cada vez.
+1. **Rotação automática.** Escolhe-se **clã → hunt → equipa** e a página propõe
+   o ciclo de lures. Para cada lure indica:
+   - que Pokémon solta, por ordem, e quais lura;
+   - que skills usa e quais guarda;
+   - quando usar o Elixir de Ataque e o Revive;
+   - **espera antes da lure** (s) e, para cada Pokémon, "**solta quando <skill>
+     marcar N s**".
+   - Resumo: tempo por ciclo, lures/hora e esperas.
+2. **Modo hunt ao vivo.** A página mostra o passo atual e o próximo, e decide a
+   lure seguinte a partir do estado real dos cooldowns, não só do plano. Tem
+   botões grandes para usar no telemóvel ao lado do PC.
+3. **Afinação do dano.** No fim de cada lure tocas em **faltou dano / fechou /
+   sobrou dano**, e a página ajusta a estimativa de dano dessa hunt e refaz a
+   rotação.
+4. **Painel da hunt** tirado da wiki:
+   - elemento do dano dos bichos;
+   - elementos super efetivos e efetivos;
+   - berries recomendadas;
+   - boss, angry e shiny;
+   - resistência e caminho;
+   - link para a wiki.
+5. **Cobertura:** hunts indicadas para Orebound (27), Malefic (6) e Volcanic (20)
+   segundo a wiki, pela prioridade Orebound → Malefic → Volcanic.
+6. **Ultra Lab**:
+   - painel com as mecânicas dos 4 Alpha Subject;
+   - ajudante de equipa com a fórmula do Mass Roon: TM Tank, TM Burst, T1B com
+     device, T1C finalizador, T2 finalizador e 1 lugar livre, marcando quais dos
+     teus Pokémon encaixam onde;
+   - lembretes: Mecha Device obrigatório; Nightmare Move não funciona lá.
+7. Equipas guardadas **por boneco**.
 
 ## 3. Não-objetivos (fica para depois ou fora)
 
-- **Mini-jogo de treino dos bosses da Ultra Lab**: projeto separado, a seguir a
-  este.
-- **Análise de vídeos** (Masrune, Artilheiro) para tirar rotações e posições de
-  lures: YouTube e Twitch estão bloqueados nesta sessão. Fica para quando houver
-  links concretos. O planeador tem de funcionar sem isso.
-- Posições das lures no mapa e mapas desenhados. A wiki não as tem; os
-  minimapas dizem que os Pokémon "não representam o local exato".
-- Hunts de clãs que não sejam estes três.
+- **Rotação automática da Ultra Lab.** É uma hunt em dupla com bosses, e o Mass
+  Roon não mostrou a rotação. Fica o painel e o ajudante de equipa.
+- **Mini-jogo de treino dos bosses da Ultra Lab**: projeto seguinte.
+- Posições das lures no mapa. A wiki não as tem.
+- O 4.º vídeo (runas / Pokélog): não tem legendas e o YouTube bloqueia o download
+  do vídeo neste ambiente.
+- Hunts de outros clãs.
 
-## 4. Anti-objetivos (seria um fracasso mesmo que "funcionasse")
+## 4. Anti-objetivos
 
-- **Qualquer coisa que jogue por quem joga**: enviar teclas ou cliques ao jogo,
-  ler a memória ou o ecrã do cliente, macros. Isso dá ban. O planeador é só
-  informação e cronómetro, operado à mão.
-- Apresentar como exatos números que são estimativas, como o tempo de cada golpe
-  ou o tempo de combate numa lure. Têm de aparecer como valores ajustáveis.
-- Assumir uma equipa que não existe. A equipa é sempre escolhida na página; não
-  há equipa "padrão" imposta.
+- **Nada que jogue por quem joga**: sem teclas ou cliques enviados ao jogo, sem
+  ler memória ou ecrã, sem macros. Isso dá ban. É informação e cronómetro,
+  operado à mão.
+- **Fingir que sabe o dano exato.** O dano é uma estimativa que se afina; a
+  página tem de o dizer.
+- Assumir uma equipa que não existe. A equipa é sempre escolhida na página.
 
-## 5. Restrições
+## 5. Restrições e dados conhecidos
 
-- Dados vêm da wiki oficial (`wiki.pokexgames.com`), em português. A rede da
-  sessão já permite este host. A wiki pode estar desatualizada; cada dado mostra
-  a página de origem.
-- O jogo tem o foco do teclado durante a hunt. Atalhos de teclado na página só
-  funcionam se ela tiver o foco (2.º monitor clicado). Por isso o modo hunt tem
-  de funcionar bem **com toques no telemóvel/tablet ao lado do PC**, com botões
-  grandes.
-- Entrega como página web única (HTML + JS + dados embutidos), publicada com
-  link privado para abrir no PC ou no telemóvel. O código fonte e o script de
-  recolha de dados ficam no repositório, no ramo `claude/sleepy-feynman-75lqyr`.
+- Dados da wiki oficial (`wiki.pokexgames.com`, PT), já permitida na rede. Cada
+  dado mostra a página de origem.
+- **Attack Elixir** (wiki): +35% de ataque durante 20 s, recarga de 3,5 min.
+  - O Mass Roon diz que a lure do elixir rende "70%" de uma lure de três
+    Pokémon.
+  - Valores editáveis.
+- **Nightmare Revive** (wiki): reviver um Pokémon, recarga de **5 min**.
+  - Choca com o ciclo de ~4 min do Mass Roon: ou o ciclo real é mais longo, ou
+    a recarga é outra.
+  - Valor editável; a página respeita-o.
+- O jogo tem o foco do teclado. O modo hunt tem de funcionar com **toques no
+  telemóvel/tablet**. Os atalhos de teclado são um extra.
+- Entrega como página web única (HTML + JS + dados embutidos), com link privado
+  para abrir no PC ou no telemóvel. Código e script de recolha no repositório,
+  ramo `claude/sleepy-feynman-75lqyr`.
 - Interface em português de Portugal.
 
 ## 6. Abordagens consideradas
 
-- **A. Planeador interativo (a escolhida).** A página calcula a rotação a partir
-  da equipa escolhida e dos cooldowns da wiki, e tem modo hunt. Funciona para
-  qualquer equipa e para os três bonecos, e recalcula quando se troca de
-  Pokémon. O custo é que o tempo entre lures é introduzido à mão.
-- **B. Guia escrito com equipa "padrão" por clã.** Lê-se e segue-se, mas a equipa
-  é suposta. Seriam mais de 50 hunts de texto quase repetido, e o guia estaria
-  errado se a equipa real fosse outra.
-- **C. Guia escrito com a equipa real.** Exato, mas estático: cada troca de
+### 6.1 Forma de entrega
+
+- **A. Planeador interativo (escolhida)**: funciona para qualquer equipa e
+  recalcula sozinho.
+- **B. Guia escrito com equipa "padrão"**: rejeitada. Supõe equipas e daria 50+
+  hunts de texto quase repetido.
+- **C. Guia escrito com a equipa real**: rejeitada. É estático e cada troca de
   Pokémon obriga a refazê-lo.
 
-Escolhida a A porque é a única que serve os três bonecos sem adivinhar equipas.
+### 6.2 Como a página sabe se uma lure fecha dano
+
+- **1. Regra "quantos Pokémon fecham uma lure"** (ex.: "lura + 2"), indicada por
+  hunt.
+  - É simples, mas trata todos os Pokémon como iguais.
+  - Não consegue equilibrar dano nem mudar o burst de time.
+- **2. Pontos de dano + afinação com o uso (escolhida, por ser a mais prática)**.
+  - Não é preciso preencher nada antes de caçar.
+  - Parte de uma estimativa que dá "lura + 2", como a regra do Mass Roon, e
+    afina com os botões faltou/sobrou.
+  - Permite equilibrar times como ele faz.
+  - Custo: as primeiras lures numa hunt nova podem falhar um pouco.
 
 ## 7. O que foi decidido sobre o "como"
 
-### 7.1 Matemática do Disk (núcleo, tem de ter testes)
+### 7.1 Matemática do Disk (núcleo, com testes)
 
-- Seja `R` o cooldown que falta a um golpe no momento em que o Pokémon é
-  recolhido, e `N` o intervalo do Disk.
-- Tempo `t` dentro da bola até ficar pronto: o menor `t` inteiro com
-  `t + floor(t / N) >= R`.
-  Exemplos com N=3: 60 s → 45 s; 40 s → 30 s; 30 s → 23 s; 20 s → 15 s.
+- `R` = cooldown que falta a uma skill quando o Pokémon entra na bola, `N` = intervalo
+  do Disk. Tempo `t` na bola até ficar pronta: o menor `t` com
+  `t + floor(t / N) >= R`. Com N=3: 60 → 45 s, 40 → 30 s, 30 → 23 s, 20 → 15 s.
 - Fora da bola, `R` desce 1 s por segundo.
-- **Pressuposto (decisão minha):** o contador de N s começa no momento em que o
-  Pokémon entra na bola. Não se sabe se o jogo usa um relógio global, e o erro
-  máximo é de ~1 tick (1 s). A página mostra uma nota "±1 s".
-- Golpes que ficam prontos antes de o Pokémon ser recolhido não contam para a
-  espera.
+- Pressuposto (decisão minha): o contador de N s começa quando o Pokémon entra
+  na bola. Erro máximo ~1 s; a página mostra "±1 s".
+- **Momento de soltar**. As skills de um Pokémon são usadas por ordem, a
+  `k × segundos por golpe` depois de o soltar. Ele pode sair quando todas as
+  skills marcadas ficam prontas a tempo de serem usadas (na bola acelera, cá
+  fora não).
+  - A página calcula o momento mais cedo que cumpre isto.
+  - Mostra-o como "solta quando <skill mais lenta> marcar N s", que é o número
+    que se vê na barra do jogo.
 
 ### 7.2 Dados
 
-- **Hunts** (das páginas `Nightmare Hunt - <nome>` cujos "Clãs indicados"
-  incluem Orebound, Malefic ou Volcanic, mais `Ultra Lab`): nome, dificuldade
-  (Baixa/Alta), resistência, clãs indicados, elemento do dano dos bichos,
-  elementos super efetivos e efetivos, berries/elixires recomendados, notas
-  (boss, angry, shiny), texto de localização e URL da wiki.
-- **Pokémon** (das páginas de clã `Orebound`, `Malefic`, `Volcanic`, por tier):
-  nome, tier, elementos, função PvE (dano explosivo, dano contínuo, etc.) e,
-  da página de cada Pokémon, a secção **"Movimentos PVE"**. Para cada golpe:
-  nome, cooldown (s), etiquetas (Target, AOE, Damage, Stun, Slow, Debuff, Buff,
-  ...) e elemento.
-- **Ultra Lab**: notas dos Alpha Subject #1–#4.
-  - Partir primeiro as 4 máquinas de defesa, que cortam 90% do dano.
-  - Selfdestruction aos 9% de HP.
-  - Esquivas:
-    - Psyusion: subir para o SQM do boss.
-    - Stickmerang/Brave Bird: recolher o Pokémon antes do fim da canalização.
-    - Wild Charge: ficar à frente.
-    - Bone Rush: ficar atrás.
-  - Bónus de Held X Tier 8: +40% de dano e −40% de dano recebido.
-  - Berries: Kee, Lum, Red Sitrus e Ganlon.
-- Um script de recolha gera um ficheiro de dados (JSON) a partir da wiki, e esse
-  ficheiro é embutido na página. A recolha corre quando for preciso atualizar; a
-  página não acede à wiki em tempo real.
-- **Pokémon fora destes clãs:** a página permite adicionar um Pokémon à mão
-  (nome + golpes + cooldowns + etiquetas), porque se usam Pokémon de outros
-  clãs.
+- **Hunts**: as páginas `Nightmare Hunt - <nome>` dos três clãs e a `Ultra Lab`.
+  Campos: nome, dificuldade, resistência, clãs, elemento do dano, elementos
+  super efetivos e efetivos, berries, boss/angry/shiny, localização e URL.
+- **Pokémon**: das páginas de clã `Orebound`, `Malefic` e `Volcanic`.
+  - Por Pokémon: nome, **tier** (T1A, T1B, T1C, T1H, TM, T2, …), elementos e
+    função PvE.
+  - Da secção "Movimentos PVE" (ou "Moveset PVE") de cada Pokémon, por golpe:
+    nome, cooldown (s), etiquetas (Target, AOE, Damage, Stun, Slow, Debuff,
+    Buff, …) e elemento.
+- **Itens**: Attack Elixir e Nightmare Revive, com os valores da secção 5.
+- **Ultra Lab**:
+  - as 4 máquinas que cortam 90% do dano;
+  - Selfdestruction aos 9%;
+  - esquivas de cada Alpha;
+  - bónus de held T8 (+40% / −40%);
+  - berries Kee, Lum, Red Sitrus e Ganlon;
+  - fórmula de equipa e Mecha Device (+10% dano neutro).
+- **Referência**: a rotação Pyroar do Mass Roon (1.2) aparece no painel da hunt
+  Pyroar.
+- Um script gera um JSON a partir da wiki, embutido na página. A página não
+  acede à wiki em tempo real. O que o script não conseguir ler é listado, nunca
+  inventado.
+- Pokémon de outros clãs podem ser adicionados à mão (nome, tier, golpes,
+  cooldowns, etiquetas).
 
-### 7.3 Planeador (plano estático)
+### 7.3 Modelo de dano (estimativa afinável)
 
-Entradas:
-- Boneco (nome livre) e clã. Hunt (filtrada pelo clã, pesquisável).
-- Disk: 1.0–4.0, **4.0 por defeito**.
-- Equipa: 1 a 6 Pokémon, por ordem de rotação.
-- Golpes de cada Pokémon a usar numa lure: por defeito os de **AOE**; cada um
-  pode ser ligado ou desligado. A ordem dentro da lure segue a regra por defeito
-  descrita abaixo e pode ser reordenada.
-- Tempos, todos editáveis e marcados como estimativas:
-  - "segundos por golpe" (por defeito 1 s);
-  - "segundos de combate na lure depois do último golpe até recolher" (por
-    defeito 2 s);
-  - "segundos entre lures": de recolher até chegar à lure seguinte e soltar.
-    Guardado por hunt, por defeito 10 s.
+- **Dano de uma skill** = cooldown (s) × fator de tipo × fator do Pokémon.
+  Decisão minha: quanto maior o cooldown, mais forte o golpe, que é a regra
+  geral na PXG.
+  - Fator de tipo: AOE com dano = 1; Target com dano = 0,3; sem dano = 0.
+  - Fator do Pokémon: por tier, com valores por defeito do construtor e
+    editáveis ("este Pokémon bate mais / menos").
+  - ×1,15 para o Pokémon com device.
+  - O Elixir aplica +35% às skills usadas durante os 20 s seguintes.
+- **Alvo da hunt** (dano para fechar uma lure). Por defeito é igual ao combo
+  completo de quem lura mais 2 × a mediana dos combos completos dos outros, ou
+  seja, a regra "lura + 2".
+  - Guardado por boneco e por hunt.
+- **Afinação**: "faltou" sobe o alvo 5%, "sobrou" baixa 5%, "fechou" não mexe.
+  Pode ser reposto ao valor por defeito.
 
-Saída:
-- Tabela por lure (simular pelo menos 2 voltas completas da equipa): n.º da
-  lure, Pokémon a soltar, golpes por ordem, **espera antes de soltar (s)**, e
-  quando esse Pokémon volta a estar pronto.
-- Resumo: "Zero espera" ou "Esperas X s por volta". Inclui a **equipa mínima**
-  (quantos Pokémon da ordem atual chegam para zero espera) e o **tempo entre
-  lures mínimo** para zero espera com a equipa atual.
-- Por defeito a rotação é round-robin pela ordem da equipa.
-  **Decisão minha:** se o próximo da ordem não estiver pronto e outro estiver,
-  sugerir o que está pronto (marcado como "troca sugerida").
-- **Ordem dos golpes por defeito (decisão minha):** primeiro os de controlo
-  (Stun, Slow, Debuff, Buff), depois os de dano AOE do cooldown maior para o
-  menor. Pode ser reordenada à vontade.
+### 7.4 Escolha da rotação (otimizador)
 
-### 7.4 Modo hunt (cronómetro ao vivo)
+- **Quem lura**: os Pokémon marcados como "lurador". Por defeito, T1H e
+  Pokémon com função de tanque/off-tank; é editável.
+- **Uma lure** = um lurador, mais 0 a 3 outros Pokémon, cada um com um conjunto
+  de skills. As opções mínimas são "tudo", "tudo menos a skill de 50 s" e "só
+  uma skill". Opcionalmente leva Elixir num Pokémon, ou Revive em quem lura
+  (que combo de novo).
+- **Restrições**:
+  - o dano estimado chega ao alvo;
+  - cada skill está pronta quando é usada;
+  - o elixir e o revive respeitam a sua recarga.
+- **Objetivo**: o máximo de lures por hora, ou seja, o mínimo de espera mais
+  combate mais deslocação.
+  - Desempate: o menor dano a sobrar.
+  - Depois: preferências do Mass Roon, como alternar quem lura e guardar a
+    skill de 50 s mais forte de quem lura para a lure do elixir.
+- **Pesquisa com antecipação**: olha 2–3 lures à frente, para não gastar agora
+  o que faz falta já a seguir.
+- **Tempos** (editáveis e marcados como estimativa):
+  - segundos por golpe (1 s);
+  - combate depois do último golpe (2 s);
+  - deslocação entre lures, guardada por hunt (10 s).
+- **Plano**: simula a partir de tudo pronto e mostra o ciclo que se repete, ou
+  as primeiras 12 lures se não houver ciclo limpo.
 
-- Um cartão grande por Pokémon da equipa, com estado **na bola / fora** e
-  contagem decrescente até ao kit estar pronto (verde quando pronto).
-- Toque em "Soltar": arranca os cooldowns dos golpes selecionados, espaçados por
-  "segundos por golpe". Toque em "Recolher": a partir daí a contagem passa a usar
-  a regra do Disk.
-- Destaque do **próximo a soltar**, contador de lures e botão de reiniciar.
-- Atalhos de teclado 1–6 (soltar/recolher) para quem usa num 2.º monitor com
-  foco.
-- Funciona bem a largura de telemóvel e não deixa o ecrã apagar enquanto está
-  ativo, se o browser permitir.
+### 7.5 Modo hunt
 
-### 7.5 Guardar
+- Mostra a **lure atual** com os passos por ordem, e em cada passo o
+  "solta quando … marcar N s".
+- Toca-se **"Recolhi"** quando se recolhe cada Pokémon.
+  - Decisão minha: um só toque por Pokémon. O momento em que foi solto
+    calcula-se a partir do número de golpes.
+  - Elixir e revive têm o seu próprio botão.
+- No fim da lure: **Faltou / Fechou / Sobrou**. A página afina e calcula a
+  próxima lure a partir dos cooldowns reais.
+- Contador de lures e de lures/hora, e botão de reiniciar.
+- Funciona bem no telemóvel e pede para o ecrã não apagar.
+- Atalhos de teclado opcionais.
 
-- Equipas por boneco, tempos por hunt e preferências guardados no próprio
-  browser (localStorage). Há também "Exportar/Importar" num código de texto para
-  passar do PC para o telemóvel.
-- **Decisão minha:** localStorage chega, porque é só um utilizador. Sincronizar
-  automaticamente entre dispositivos fica para depois, se for preciso.
+### 7.6 Guardar
+
+- Equipas por boneco, alvos de dano e tempos por hunt ficam no browser
+  (localStorage).
+- Há também "Exportar/Importar" por código de texto, para passar entre o PC e o
+  telemóvel.
 
 ## 8. Deixado ao construtor
 
-- Estrutura do código, nomes de ficheiros e testes. A matemática do Disk e o
-  simulador do plano têm de ter testes automáticos.
-- Linguagem do script de recolha e robustez do parsing do wikitext. Há páginas
-  com formatação diferente; o que falhar deve ser listado, não inventado.
-- Visual da página, desde que seja legível de relance durante o jogo
-  (contraste alto, números grandes) e funcione em tema claro e escuro.
-- Como mostrar a Ultra Lab na lista (entrada especial no topo, por exemplo).
+- Estrutura do código, nomes, testes e visual. O visual tem de se ler de relance
+  durante o jogo, em tema claro e escuro.
+- A matemática do Disk, o modelo de dano e o otimizador **têm de ter testes
+  automáticos**. Um dos testes reproduz a estrutura da rotação Pyroar do Mass
+  Roon com a equipa dele e verifica que o otimizador chega a uma rotação sem
+  espera, com 3 Pokémon ou elixir/revive por lure.
+- Valores por defeito do fator por tier.
+- O algoritmo de pesquisa (feixe, poda, …), desde que responda em menos de ~1 s
+  no telemóvel.
+- Robustez do parsing do wikitext.
 
 ## 9. Questões em aberto para mais tarde
 
-- Posições das lures e tempos reais entre lures por hunt, a partir de vídeos
-  enviados com links concretos.
-- Confirmar no jogo se o tick do Disk é por Pokémon ou global (afeta ±1 s).
-- Mini-jogo dos bosses da Ultra Lab (próximo projeto).
+- Recarga real do Revive na Nightmare (5 min segundo a wiki, ~4 min de ciclo no
+  vídeo).
+- Se o tick do Disk é por Pokémon ou global (±1 s).
+- Rotação automática da Ultra Lab, quando houver vídeo da rotação.
+- Mini-jogo dos bosses da Ultra Lab.
