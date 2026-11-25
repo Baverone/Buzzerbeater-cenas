@@ -1,6 +1,6 @@
 # Planeador de Rotações Nightmare (PokeXGames) — Desenho
 
-Data: 2026-11-25 · Estado: rascunho v2 para aprovação
+Data: 2026-11-25 · Estado: rascunho v3 para aprovação
 
 ## 1. Intenção e porquê
 
@@ -92,6 +92,15 @@ Tirado das legendas de três vídeos: "Nightmare Disk 4 e Hunt Pyroar",
      teus Pokémon encaixam onde;
    - lembretes: Mecha Device obrigatório; Nightmare Move não funciona lá.
 7. Equipas guardadas **por boneco**.
+8. **Team perfeito por hunt**, escolhido entre **todos** os Pokémon do clã do
+   boneco, incluindo os megas novos (Mega Aerodactyl, Mega Excadrill, Mega
+   Barbaracle, …), e não só entre os que já tem. A página mostra três coisas:
+   - o melhor team só com os Pokémon que o boneco **tem**;
+   - o melhor team **possível** no clã;
+   - **o que vale a pena comprar**: que Pokémon, se adicionado, mais sobe as
+     lures/hora nessa hunt.
+9. **Teste de dano**: um ecrã para registar o dano real de cada Pokémon, medido
+   no jogo num alvo neutro. Esses números substituem a estimativa (ver 7.3).
 
 ## 3. Não-objetivos (fica para depois ou fora)
 
@@ -200,8 +209,35 @@ Tirado das legendas de três vídeos: "Nightmare Disk 4 e Hunt Pyroar",
 - Pokémon de outros clãs podem ser adicionados à mão (nome, tier, golpes,
   cooldowns, etiquetas).
 
-### 7.3 Modelo de dano (estimativa afinável)
+### 7.3 Modelo de dano
 
+Fontes de dano por ordem de confiança. A página mostra sempre de qual veio:
+
+1. **Teste próprio** (ecrã "Teste de dano"):
+   - Escolhe-se o Pokémon. A página lista **só as skills AOE com dano**, pelas
+     etiquetas da wiki. As de alvo único aparecem como opcionais, para a Ultra
+     Lab.
+   - Bate-se num alvo neutro e escreve-se o dano que **um bicho** levou. Em
+     golpes com vários hits, escreve-se a soma.
+   - Podem registar-se 2–3 testes por skill; a página usa a média, por causa do
+     X-Critical e do device.
+   - Registar se o teste foi feito com device, para a página poder separar o
+     bónus.
+2. **Lista importada**: colar uma tabela de dano de outra fonte (por exemplo, a
+   lista de dano do Orebound que o Mass Roon mantém), num formato simples de
+   texto/CSV. A tabela de testes também se exporta, para partilhar com o clã.
+3. **Estimativa**, quando não há nada melhor: a regra abaixo. Pokémon só com
+   estimativa ficam marcados "estimado — testa para confirmar".
+
+**Efetividade na hunt.** O dano é testado em neutro e multiplicado pelo
+elemento da skill contra os bichos da hunt.
+- Valores da página `Efetividades` da wiki: super efetivo 2×, efetivo 1,75×,
+  inefetivo 0,75×, muito inefetivo/nulo 0,5×.
+- Usa-se primeiro a lista de super efetivos/efetivos de cada página de hunt.
+- Para o resto, a tabela de tipos aplicada aos elementos dos bichos (decisão do
+  construtor, com testes).
+
+**Estimativa (fonte 3)**:
 - **Dano de uma skill** = cooldown (s) × fator de tipo × fator do Pokémon.
   Decisão minha: quanto maior o cooldown, mais forte o golpe, que é a regra
   geral na PXG.
@@ -243,6 +279,27 @@ Tirado das legendas de três vídeos: "Nightmare Disk 4 e Hunt Pyroar",
 - **Plano**: simula a partir de tudo pronto e mostra o ciclo que se repete, ou
   as primeiras 12 lures se não houver ciclo limpo.
 
+### 7.4b Escolha do team (team perfeito)
+
+- **Candidatos**: todos os Pokémon da página do clã do boneco (incluindo megas
+  e TMs), mais os adicionados à mão.
+  - Cada Pokémon tem a marca **"tenho"** por boneco, e o boneco tem um só
+    device.
+- **Avaliação de um team** = lures/hora que o otimizador de rotação (7.4)
+  consegue com ele nessa hunt, com o dano ajustado pela efetividade.
+- **Pesquisa**:
+  1. Pré-filtrar os candidatos mais fortes por papel (quem lura, burst,
+     finalizador) e por efetividade na hunt.
+  2. Melhorar por trocas, um Pokémon de cada vez.
+  3. Experimentar o device em cada membro.
+  - Corre a pedido, com barra de progresso. O tempo e o algoritmo ficam ao
+    critério do construtor, mas não pode bloquear a página.
+- **Resultados**:
+  - melhor team com "tenho";
+  - melhor team possível;
+  - top 3 compras, com o ganho em lures/hora de cada uma.
+  - Cada resultado diz quantos membros têm dano testado ou estimado.
+
 ### 7.5 Modo hunt
 
 - Mostra a **lure atual** com os passos por ordem, e em cada passo o
@@ -259,8 +316,8 @@ Tirado das legendas de três vídeos: "Nightmare Disk 4 e Hunt Pyroar",
 
 ### 7.6 Guardar
 
-- Equipas por boneco, alvos de dano e tempos por hunt ficam no browser
-  (localStorage).
+- Equipas por boneco, marcas "tenho", testes de dano, alvos de dano e tempos
+  por hunt ficam no browser (localStorage).
 - Há também "Exportar/Importar" por código de texto, para passar entre o PC e o
   telemóvel.
 
@@ -277,10 +334,23 @@ Tirado das legendas de três vídeos: "Nightmare Disk 4 e Hunt Pyroar",
   no telemóvel.
 - Robustez do parsing do wikitext.
 
+**Ordem de construção sugerida**:
+1. Dados da wiki e matemática do Disk.
+2. Teste de dano.
+3. Otimizador de rotação com o team escolhido à mão, e modo hunt.
+4. Team perfeito e compras.
+5. Painéis da Ultra Lab.
+
+Assim há algo utilizável cedo.
+
 ## 9. Questões em aberto para mais tarde
 
 - Recarga real do Revive na Nightmare (5 min segundo a wiki, ~4 min de ciclo no
   vídeo).
 - Se o tick do Disk é por Pokémon ou global (±1 s).
 - Rotação automática da Ultra Lab, quando houver vídeo da rotação.
+- Obter o link da lista de dano do Mass Roon (comando no chat da live) para
+  importar.
+- Partilhar a tabela de testes com o clã de forma automática (hoje é
+  exportar/importar).
 - Mini-jogo dos bosses da Ultra Lab.
