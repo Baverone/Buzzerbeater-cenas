@@ -214,11 +214,17 @@ Tirado das legendas de três vídeos: "Nightmare Disk 4 e Hunt Pyroar",
 Fontes de dano por ordem de confiança. A página mostra sempre de qual veio:
 
 1. **Teste próprio** (ecrã "Teste de dano"):
-   - Escolhe-se o Pokémon. A página lista **só as skills AOE com dano**, pelas
-     etiquetas da wiki. As de alvo único aparecem como opcionais, para a Ultra
-     Lab.
-   - Bate-se num alvo neutro e escreve-se o dano que **um bicho** levou. Em
-     golpes com vários hits, escreve-se a soma.
+   - Escolhe-se o Pokémon. Testa-se o **combo completo em área**: todas as
+     skills AOE com dano, pelas etiquetas da wiki. Escreve-se o dano total que
+     **um bicho** levou num alvo neutro. É um número por Pokémon.
+   - Segundo número recomendado: o **combo sem a skill de 50 s**, porque as
+     rotações ciclam essa skill. A diferença entre os dois é o valor da skill
+     de 50 s.
+   - O resto divide-se pelas skills proporcionalmente ao cooldown, para usos
+     parciais como "só a M8".
+   - Skill a skill fica **opcional**, para quem quiser mais precisão; os
+     valores por skill sobrepõem-se à divisão.
+   - As skills de alvo único são opcionais, só para a Ultra Lab.
    - Podem registar-se 2–3 testes por skill; a página usa a média, por causa do
      X-Critical e do device.
    - Registar se o teste foi feito com device, para a página poder separar o
