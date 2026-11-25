@@ -226,7 +226,23 @@ Fontes de dano por ordem de confiança. A página mostra sempre de qual veio:
 2. **Lista importada**: colar uma tabela de dano de outra fonte (por exemplo, a
    lista de dano do Orebound que o Mass Roon mantém), num formato simples de
    texto/CSV. A tabela de testes também se exporta, para partilhar com o clã.
-3. **Estimativa**, quando não há nada melhor: a regra abaixo. Pokémon só com
+3. **Por semelhança** (hipótese de quem joga: na PXG o dano é padronizado, e
+   Pokémon da mesma função têm o mesmo dano).
+   - Cada Pokémon pertence a uma **classe**: tier + função PvE da wiki, e se a
+     skill é do elemento do clã ou não. O Mass Roon diz que magias fora do clã
+     batem menos.
+   - Um teste a um Pokémon dá o dano de cada skill por cooldown (por exemplo,
+     T1C burst, skill de 50 s = X). Os outros Pokémon da mesma classe herdam
+     esses valores para skills com o mesmo cooldown. Para cooldowns não
+     testados, interpola-se pelo cooldown.
+   - Marcados "por semelhança".
+   - **Verificação da hipótese**: se dois Pokémon testados da mesma classe
+     diferirem mais de 10% no mesmo cooldown, a página avisa que a classe não é
+     uniforme e deixa de herdar nessa classe.
+   - **Lista mínima de testes**: a página sugere os poucos testes que cobrem
+     mais classes entre os Pokémon que o boneco tem, priorizando as classes que
+     entram nos teams sugeridos.
+4. **Estimativa**, quando não há nada melhor: a regra abaixo. Pokémon só com
    estimativa ficam marcados "estimado — testa para confirmar".
 
 **Efetividade na hunt.** O dano é testado em neutro e multiplicado pelo
