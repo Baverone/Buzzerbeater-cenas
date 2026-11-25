@@ -224,6 +224,16 @@ Fontes de dano por ordem de confiança. A página mostra sempre de qual veio:
      parciais como "só a M8".
    - Skill a skill fica **opcional**, para quem quiser mais precisão; os
      valores por skill sobrepõem-se à divisão.
+   - **T1H e Nightmare Move.** O Nightmare Move só funciona na Nightmare World,
+     e na Ultra Lab também não funciona. Por isso não se testa em neutro. Para
+     um T1H, o ecrã pede:
+     - em neutro: o combo sem Nightmare Move, e esse combo também sem a outra
+       skill de 50 s;
+     - **o Nightmare Move sozinho, numa hunt da Nightmare** onde o elemento
+       dele dá dano normal (1×). A página **sugere essas hunts** a partir das
+       efetividades.
+     - Se for testado numa hunt com outra efetividade, a página divide pelo
+       multiplicador para o converter em neutro.
    - As skills de alvo único são opcionais, só para a Ultra Lab.
    - Podem registar-se 2–3 testes por skill; a página usa a média, por causa do
      X-Critical e do device.
